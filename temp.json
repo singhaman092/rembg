@@ -1,0 +1,51 @@
+{
+    "resource":"/",
+    "path":"/",
+    "httpMethod":"GET",
+    "headers":"None",
+    "multiValueHeaders":"None",
+    "queryStringParameters":{
+       "url":"something"
+    },
+    "multiValueQueryStringParameters":{
+       "url":[
+          "something"
+       ]
+    },
+    "pathParameters":"None",
+    "stageVariables":"None",
+    "requestContext":{
+       "resourceId":"q9n3fif1pc",
+       "resourcePath":"/",
+       "httpMethod":"GET",
+       "extendedRequestId":"IhKNwHCoIAMFp4A=",
+       "requestTime":"09/Nov/2021: 03: 53: 34 +0000",
+       "path":"/",
+       "accountId":"777028848909",
+       "protocol":"HTTP/1.1",
+       "stage":"test-invoke-stage",
+       "domainPrefix":"testPrefix",
+       "requestTimeEpoch":1636430014247,
+       "requestId":"bb8c71c2-289e-4b32-9d5c-1948ecab9faa",
+       "identity":{
+          "cognitoIdentityPoolId":"None",
+          "cognitoIdentityId":"None",
+          "apiKey":"test-invoke-api-key",
+          "principalOrgId":"None",
+          "cognitoAuthenticationType":"None",
+          "userArn":"arn:aws:iam: : 777028848909:root",
+          "apiKeyId":"test-invoke-api-key-id",
+          "userAgent":"aws-internal/3 aws-sdk-java/1.12.76 Linux/5.4.134-73.228.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.302-b08 java/1.8.0_302 vendor/Oracle_Corporation cfg/retry-mode/standard",
+          "accountId":"777028848909",
+          "caller":"777028848909",
+          "sourceIp":"test-invoke-source-ip",
+          "accessKey":"ASIA3J2UHJUG52HC7N5R",
+          "cognitoAuthenticationProvider":"None",
+          "user":"777028848909"
+       },
+       "domainName":"testPrefix.testDomainName",
+       "apiId":"s084oyjzj8"
+    },
+    "body":"None",
+    "isBase64Encoded":false
+ }

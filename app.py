@@ -24,18 +24,19 @@ available_models = ['u2net', 'u2netp', 'u2net_human_seg']
 
 # def lambda_handler(event, context):
 
-@app.route("/test", methods=["POST","GET"])
-def lambda_handler():
+# @app.route("/test", methods=["POST","GET"])
+def handler(event,context):
+    print(event)
     file_content = ''
-    if request.method == 'POST':
+    if event.httpMethod == 'POST':
         if 'file' not in request.files:
             return ({'error': "missing post form param 'file'"}, 400)
 
         file_content = request.files['file'].read()
         print(file_content)
 
-    if request.method == 'GET':
-        url = request.args.get('url', type=str)
+    if event.httpMethod == 'GET':
+        url = event.queryStringParameters.get("url")
         if url is None:
             return ({'error': "missing query param 'url'"}, 400)
 
