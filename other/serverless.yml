@@ -1,0 +1,82 @@
+
+service: rembg-service
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  versionFunctions: false
+  memorySize: 512
+# you can overwrite defaults here
+  stage: prod
+  region: eu-west-1
+
+# you can add statements to the Lambda function's IAM Role here
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+        - "logs:*"
+      Resource: "*"
+
+# you can define service wide environment variables here
+  environment:
+    region: eu-west-1
+    gcp_url: https://rembg-tdfwzbw3cq-uc.a.run.app/test
+
+# plugins:
+#   - serverless-python-requirements
+
+# you can add packaging information here
+package:
+  exclude:
+    - node_modules/**
+    - .serverless/**
+    - env/**
+
+functions:
+  hello:
+    handler: app.lambda_handler
+    timeout: 900
+    layers:
+      - arn:aws:lambda:eu-west-1:190090053424:layer:python-custom-layer:1
+    events:
+      - http:
+          path: /rembg
+          method: post
+          cors: true
+      - http:
+          path: /rembg
+          method: get
+          cors: true
+  
+  bgprocessor:
+    handler: app.bg_process
+    timeout: 900
+    events:
+      - s3:
+          bucket: rembg-process-bucket-003
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: upload
+
+# you can add CloudFormation resource templates here
+# resources:
+#  Resources:
+#    ImageBucket:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: rembg-process-bucket-007
+      #  NotificationConfiguration:
+      #     LambdaConfigurations:
+      #       Event: s3:ObjectCreated:Put
+      #       Filter: 
+      #         NotificationFilter:
+      #             S3Key: 
+      #               upload
+      #       Function: arn:aws:lambda:us-east-1:190090053424:function:rembg-service-prod-bgprocessor
+
+
+plugins:
+  - serverless-python-requirements

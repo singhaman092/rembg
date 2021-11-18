@@ -1,0 +1,21 @@
+service: rembg-service-layer
+frameworkVersion: "^2.18.0"
+provider:
+  name: aws
+  runtime: python3.8
+  memorySize: 512
+  versionFunctions: false
+  stage: prod
+  region: eu-west-1 #change if needed
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    layer: 
+      name: python-custom-layer
+      description: "Layer which contains all library"
+      compatibleRuntimes:
+        - python3.8
