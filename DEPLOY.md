@@ -25,6 +25,7 @@ Navigate to environment under serverless.yml and update the path .
 
 ### Serverless Deploy ###
 This steps deploys AWS Config in your Account
+please change directory to other folder in this directory
 
 ### Install the sls framework for this step ###
 npm install -g serverless
@@ -40,6 +41,11 @@ export AWS_PROFILE=profilename
 ### Deploy ###
 pip install -r requirements.txt
 npm install -D serverless-layers
+
+If this is first time deploy or if it gives layer error then run 
+sls deploy -c layer.yml 
+
+finally
 sls deploy --verbose
 
 ### rollback ###
@@ -54,6 +60,6 @@ Navigate to the API, click settings .
 Goto binary media types and add */*.
  
 Once done please redploy the api gateway for changes to take effect.
-api gateway> click on prod rembg > actions >deploy api
+api gateway> click on prod rembg > actions > deploy api
 
 
