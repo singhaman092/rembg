@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     try:
         print(event)
         if event['httpMethod'] == 'POST':
-            image = post_request(event)
+            uuid, image = post_request(event)
         elif event['httpMethod'] == 'GET':
             image = get_request(event)
         else:
@@ -27,7 +27,8 @@ def lambda_handler(event, context):
         
         return {
             "headers": {
-                'content-type': 'image/png'
+                'content-type': 'image/png',
+                'content-disposition': uuid
             },
             "isBase64Encoded": True,
             'statusCode': 200,

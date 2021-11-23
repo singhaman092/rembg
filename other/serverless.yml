@@ -23,7 +23,7 @@ provider:
 # you can define service wide environment variables here
   environment:
     region: eu-west-1
-    gcp_url: https://rembg-slcnblusya-lz.a.run.app/test #https://rembg-tdfwzbw3cq-uc.a.run.app/test
+    gcp_url: https://rembg-slcnblusya-lz.a.run.app/test # https://rembg-slcnblusya-lz.a.run.app/test #https://rembg-tdfwzbw3cq-uc.a.run.app/test
 
 # plugins:
 #   - serverless-python-requirements
