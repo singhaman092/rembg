@@ -27,14 +27,7 @@ def post_request(event):
         print('success')
         print(response)
         return response.content
-        # return {
-        #     "headers": {
-        #         'content-type': 'image/png'
-        #     },
-        #     "isBase64Encoded": True,
-        #     'statusCode': 200,
-        #     'body': base64.b64encode(response.content)
-        # }
+
     except Exception as e:
         print(e)
         raise IOError(e)
