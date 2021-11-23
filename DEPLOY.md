@@ -14,14 +14,27 @@ docker push gcr.io/leaguecards-dev-test/rembg
 
 Please note that leaguecards-dev-test is the project id
 
-### Please create a service after this in console ###
+### create a service after this in console ###
+go to cloud run
+click on create service
+select the image which u have uploaded in the previous step
+give the service name
+select the region
+select CPU is only allocated while processing
+click on advanced settings
+For Container port give 5000
+For Capacity give 2GB RAM and 4vCPU
+For execution env choose 2nd Gen 
+Select allow all requests even the unauthorized ones
 
-Once done please copy the url returned by gcp console and store it in serverless.yml
+### Changing the serverless.yml ###
+
+Once done please copy the url returned by gcp console for the service and store it in serverless.yml.
 
 suppose the path returned by gcp is https://something.com, the actual url which you have to 
 save is https://something.com/test
 
-Navigate to environment under serverless.yml and update the path .
+Navigate to environment under serverless.yml and update the path of gcp_url.
 
 ### Serverless Deploy ###
 This steps deploys AWS Config in your Account
