@@ -6,6 +6,7 @@ import uuid
 from uuid import uuid4
 import os
 from utils.utils import *
+import time
 
 BUCKET_NAME = 'rembg-process-bucket-003'
 uuid = uuid4()
@@ -69,5 +70,8 @@ def bg_process(event,context):
 def cold_start(event,context):
     print('making trigger call')
     data = {'url': 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'}
+    start = time.time()
     resp = requests.get(gcp_url,params=data)
+    end = time.time()
     print(resp)
+    print(f'resp time taken: {start-end}')
