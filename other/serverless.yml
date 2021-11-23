@@ -44,11 +44,11 @@ functions:
     events:
       - http:
           path: /rembg
-          method: post
+          method: POST
           cors: true
       - http:
           path: /rembg
-          method: get
+          method: GET
           cors: true
   
   bgprocessor:
@@ -60,7 +60,13 @@ functions:
           event: s3:ObjectCreated:*
           rules:
             - prefix: upload
-
+  
+  coldstart:
+    handler: app.cold_start
+    timeout: 900
+    events:
+      - eventBridge:
+          schedule: rate(10 minutes)
 # you can add CloudFormation resource templates here
 # resources:
 #  Resources:

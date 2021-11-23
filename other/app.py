@@ -64,3 +64,10 @@ def bg_process(event,context):
     except Exception as e:
         print(e)
         raise IOError(e)
+
+
+def cold_start(event,context):
+    print('making trigger call')
+    data = {'url': 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'}
+    resp = requests.get(gcp_url,params=data)
+    print(resp)

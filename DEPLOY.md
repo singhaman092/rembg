@@ -11,6 +11,7 @@ gcloud auth configure-docker
 ## Push to gcr ##
 docker tag rembg:latest gcr.io/leaguecards-dev-test/rembg
 docker push gcr.io/leaguecards-dev-test/rembg
+
 Please note that leaguecards-dev-test is the project id
 
 ### Create a service after this in console ###
@@ -24,7 +25,7 @@ click on advanced settings
 For Container port give 5000
 For Capacity give 2GB RAM and 4vCPU
 For execution env choose 2nd Gen 
-Select allow all requests even the unauthorized ones
+Select allow all traffic/requests even the unauthorized ones
 
 ### Changing the serverless.yml ###
 
