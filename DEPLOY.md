@@ -8,13 +8,12 @@ gcloud auth login
 gcloud config set project leaguecards-dev-test
 gcloud auth configure-docker
 
-## push to gcr ##
+## Push to gcr ##
 docker tag rembg:latest gcr.io/leaguecards-dev-test/rembg
 docker push gcr.io/leaguecards-dev-test/rembg
-
 Please note that leaguecards-dev-test is the project id
 
-### create a service after this in console ###
+### Create a service after this in console ###
 go to cloud run
 click on create service
 select the image which u have uploaded in the previous step
@@ -30,7 +29,6 @@ Select allow all requests even the unauthorized ones
 ### Changing the serverless.yml ###
 
 Once done please copy the url returned by gcp console for the service and store it in serverless.yml.
-
 suppose the path returned by gcp is https://something.com, the actual url which you have to 
 save is https://something.com/test
 
@@ -48,7 +46,7 @@ sls plugin install -n serverless-python-requirements
 download the security creds from the console, by going under your name> My Security Creds
 aws configure --profile profilename
 
-### export AWS PROFILE ##
+### Export AWS PROFILE ##
 export AWS_PROFILE=profilename
 
 ### Deploy ###
@@ -61,7 +59,7 @@ sls deploy -c layer.yml
 finally
 sls deploy --verbose
 
-### rollback ###
+### Rollback ###
 sls remove
 
 ### Errors during remove or rollback ###
