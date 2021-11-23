@@ -2,13 +2,13 @@ import json
 import base64
 import boto3
 import requests
-import uuid
-from uuid import uuid4
+# import uuid
+# from uuid import uuid4
 import os
 from utils.utils import *
 
 BUCKET_NAME = 'rembg-process-bucket-003'
-uuid = uuid4()
+# uuid = uuid4()
 region = os.getenv('region')
 gcp_url = os.getenv('gcp_url')
 s3 = boto3.client('s3',region_name=region)
@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     try:
         print(event)
         if event['httpMethod'] == 'POST':
-            uuid, image = post_request(event)
+            new_uuid, image = post_request(event)
         elif event['httpMethod'] == 'GET':
             image = get_request(event)
         else:
@@ -28,7 +28,7 @@ def lambda_handler(event, context):
         return {
             "headers": {
                 'content-type': 'image/png',
-                'content-disposition': uuid
+                'content-disposition': new_uuid
             },
             "isBase64Encoded": True,
             'statusCode': 200,
