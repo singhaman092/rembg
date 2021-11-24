@@ -2,14 +2,10 @@ import json
 import base64
 import boto3
 import requests
-import uuid
-from uuid import uuid4
 import os
 from utils.utils import *
-import time
 
 BUCKET_NAME = 'rembg-process-bucket-003'
-uuid = uuid4()
 region = os.getenv('region')
 gcp_url = os.getenv('gcp_url')
 s3 = boto3.client('s3',region_name=region)
@@ -18,9 +14,10 @@ def lambda_handler(event, context):
     try:
         print(event)
         if event['httpMethod'] == 'POST':
-            image = post_request(event)
+            uuid,image = post_request(event)
+            print(uuid)
         elif event['httpMethod'] == 'GET':
-            image = get_request(event)
+            uuid,image = get_request(event)
         else:
             return {
                 'statusCode': 403
@@ -28,7 +25,8 @@ def lambda_handler(event, context):
         
         return {
             "headers": {
-                'content-type': 'image/png'
+                'content-type': 'image/png',
+                'uuid': f'{uuid}'
             },
             "isBase64Encoded": True,
             'statusCode': 200,
@@ -65,13 +63,3 @@ def bg_process(event,context):
     except Exception as e:
         print(e)
         raise IOError(e)
-
-
-def cold_start(event,context):
-    print('making trigger call')
-    data = {'url': 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'}
-    start = time.time()
-    resp = requests.get(gcp_url,params=data)
-    end = time.time()
-    print(resp)
-    print(f'resp time taken: {start-end}')

@@ -25,8 +25,8 @@ def post_request(event):
     try:
         response = requests.post(gcp_url,files=files)
         print('success')
-        print(response)
-        return response.content
+        # print(response)
+        return uuid, response.content
 
     except Exception as e:
         print(e)
@@ -49,8 +49,8 @@ def get_request(event):
     try:
         response = requests.get(gcp_url,params=data)
         print('success')
-        print(response)
-        return response.content
+        # print(response)
+        return uuid,response.content
         
     except Exception as e:
         print(e)
